@@ -51,10 +51,8 @@ Released under the MIT license: http://jsbin.mit-license.org
    <span id="result"></span>
   </div>
   </br>
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSVvqbzjSl51RlV9o5cTyRkpBEL5ZO8b34J9DZrLH8rs9hcbSBO33qCb5zLArFjhjPhycEvhSH260s0/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" name="mainframe" id="mainframe"
-    width="80%"  height="60%" marginwidth="0" marginheight="0"
-    scrolling="No" frameborder="0"
-    onload="Javascript:SetCwinHeight()">></iframe>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSVvqbzjSl51RlV9o5cTyRkpBEL5ZO8b34J9DZrLH8rs9hcbSBO33qCb5zLArFjhjPhycEvhSH260s0/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false" 
+    align="center" width="80%"  height="60%" frameborder="0" scrolling="auto"></iframe>
 
 <script id="jsbin-javascript">
   
@@ -63,18 +61,6 @@ var rfid;
 var myData;
 var xyz;
   
-function SetCwinHeight() {
-    var iframeid = document.getElementById("mainframe"); //iframe id  
-    if (document.getElementById) {
-        if (iframeid && !window.opera) {
-            if (iframeid.contentDocument && iframeid.contentDocument.body.offsetHeight) {
-                iframeid.height = iframeid.contentDocument.body.offsetHeight;
-            } else if (iframeid.Document && iframeid.Document.body.scrollHeight) {
-                iframeid.height = iframeid.Document.body.scrollHeight;
-            }
-        }
-    }
-}
 
 function get_date(t) {
   var varDay = new Date(),
