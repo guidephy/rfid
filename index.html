@@ -23,7 +23,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   
  
 #card { font-size: 40px;  }
-  
+#hint { font-size: 40px;  }  
 #demo-area-01-show { font-size: 40px; pointer-events: auto!important; }
 #result { font-size: 30px;  }
 </style>
@@ -35,11 +35,11 @@ Released under the MIT license: http://jsbin.mit-license.org
 <body>
 
  <div>
-  <h1 align="center">觀音高中遲到管理系統<h1>
+  <h1 align="center">觀音高中遲到管理系統</h1>
    
  </div>  
  <div>
-   <h2 id="hint" style="color:blue">請放上學生證</h2>
+   <span id="hint" style="color:blue">請放上學生證</span>
  </div>
  <div>
    <span id="card">卡片代碼:</span>
@@ -110,6 +110,7 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
   rfid.on('enter', function(_uid){
    if(_uid==xyz){
       document.getElementById('hint').innerHTML = "資料已登記";
+      document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
      }else{
     rfid._uid = _uid;
    
