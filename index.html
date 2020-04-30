@@ -102,7 +102,7 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
   rfid.read();
   rfid.on('enter', function(_uid){
     rfid._uid = _uid;
-    document.getElementById('result').innerHTML = "";
+   
     document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
     
     
@@ -111,7 +111,7 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
     myData.column2 = rfid._uid;
   
     writeSheetData(myData);
-    await delay(1);
+  
     document.getElementById('result').innerHTML = "輸入成功";
   });
 });
