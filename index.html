@@ -57,6 +57,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 $(function(){
 var rfid;
 var myData;
+var xyz;
 
 function get_date(t) {
   var varDay = new Date(),
@@ -107,6 +108,8 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
   myData.sheetName = 'data';
   rfid.read();
   rfid.on('enter', function(_uid){
+   if(_uid==xyz){
+     }else{
     rfid._uid = _uid;
    
     document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
@@ -119,6 +122,9 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
     writeSheetData(myData);
     document.getElementById('hint').innerHTML = "";
     document.getElementById('result').innerHTML = "輸入成功";
+    
+    xyz=rfid._uid;
+    }
   });
    rfid.on('leave',async function(_uid){
       document.getElementById('hint').innerHTML = "請放上學生證";
