@@ -98,7 +98,7 @@ function get_time(t) {
 
 
 boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true}, function (board) {
-  board.samplingInterval = 50;
+  board.samplingInterval = 1000;
   rfid = getRFID(board);
   myData= {};
   myData.sheetUrl = 'https://docs.google.com/spreadsheets/d/1mjbZ4kRflma2u1jr8UwOI-L8pqvHv3y7e4J8cY4yfgo/edit?usp=sharing';
