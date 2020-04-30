@@ -19,8 +19,11 @@ Released under the MIT license: http://jsbin.mit-license.org
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js?rev=683a69503433786202911b4d9f766100"></script>
   <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
 <style id="jsbin-css">
+
   
+#hint { font-size: 40px;  }  
 #card { font-size: 40px;  }
+  
 #demo-area-01-show { font-size: 40px; pointer-events: auto!important; }
 #result { font-size: 30px;  }
 </style>
@@ -36,6 +39,7 @@ Released under the MIT license: http://jsbin.mit-license.org
    
  </div>  
  <div>
+   <span id="hint">請放上學生證</span>
    <span id="card">卡片代碼:</span>
    <span id="demo-area-01-show"></span>
   </div>
@@ -111,12 +115,14 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
     myData.column2 = rfid._uid;
   
     writeSheetData(myData);
-  
+    document.getElementById('hint').innerHTML = "";
     document.getElementById('result').innerHTML = "輸入成功";
   });
    rfid.on('leave',async function(_uid){
+      document.getElementById('hint').innerHTML = "請放上學生證";
       document.getElementById('demo-area-01-show').innerHTML = "";
       document.getElementById('result').innerHTML = "";
+     
   });
 });
 });
