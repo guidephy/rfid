@@ -20,7 +20,7 @@ Released under the MIT license: http://jsbin.mit-license.org
   <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
 <style id="jsbin-css">
 
-#demo-area-01-show { font-size: 60px; pointer-events: auto!important;
+#demo-area-01-show { font-size: 60px; pointer-events: auto!important; }
 
 </style>
 </head>
@@ -29,7 +29,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 </head>
 
 <body>
-  <div><span id="demo-area-01-show">123</span></div>
+ <div><span id="demo-area-01-show">123</span></div>
 
 
 
@@ -37,20 +37,18 @@ Released under the MIT license: http://jsbin.mit-license.org
 <script id="jsbin-javascript">
 $(function(){
 
+var rfid;
 
-var photocell;
 
-
-boardReady({board: 'Smart', device: '10ymanny', transport: 'mqtt'}, function (board) {
+boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true}, function (board) {
   board.samplingInterval = 50;
-  photocell = getPhotocell(board, 0);
-  photocell.measure(function (val) {
-    photocell.detectedVal = val;
-    document.getElementById('demo-area-01-show').innerHTML = photocell.detectedVal;
+  rfid = getRFID(board);
+  rfid.read();
+  rfid.on('enter', function(_uid){
+    rfid._uid = _uid;
+    document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
   });
 });
-
-
   
 });
 </script>
