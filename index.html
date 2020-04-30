@@ -19,7 +19,8 @@ Released under the MIT license: http://jsbin.mit-license.org
   <script src="https://blocklypro.webduino.io/dist/lib/runtime.min.js?rev=683a69503433786202911b4d9f766100"></script>
   <script src="https://blockly.webduino.io/webduino-blockly.js"></script>
 <style id="jsbin-css">
-#demo-area-01-show { font-size: 60px; pointer-events: auto!important; }
+
+#demo-area-01-show { font-size: 60px; pointer-events: auto!important;
 
 </style>
 </head>
@@ -28,7 +29,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 </head>
 
 <body>
-   <div><span id="demo-area-01-show">卡片代碼</span></div>
+  <div><span id="demo-area-01-show">123</span></div>
 
 
 
@@ -37,18 +38,15 @@ Released under the MIT license: http://jsbin.mit-license.org
 $(function(){
 
 
-var rfid;
-var _E5_8D_A1_E7_89_87_E4_BB_A3_E7_A2_BC;
+var photocell;
 
 
 boardReady({board: 'Smart', device: '10ymanny', transport: 'mqtt'}, function (board) {
   board.samplingInterval = 50;
-  rfid = getRFID(board);
-  _E5_8D_A1_E7_89_87_E4_BB_A3_E7_A2_BC = 0;
-  rfid.read();
-  rfid.on('enter', function(_uid){
-    rfid._uid = _uid;
-    document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
+  photocell = getPhotocell(board, 0);
+  photocell.measure(function (val) {
+    photocell.detectedVal = val;
+    document.getElementById('demo-area-01-show').innerHTML = photocell.detectedVal;
   });
 });
 
