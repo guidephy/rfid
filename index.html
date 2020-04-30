@@ -50,17 +50,70 @@ Released under the MIT license: http://jsbin.mit-license.org
 $(function(){
 
 var rfid;
+  
+var myData;
+
+function get_date(t) {
+  var varDay = new Date(),
+    varYear = varDay.getFullYear(),
+    varMonth = varDay.getMonth() + 1,
+    varDate = varDay.getDate();
+  var varNow;
+  if (t == "ymd") {
+    varNow = varYear + "/" + varMonth + "/" + varDate;
+  } else if (t == "mdy") {
+    varNow = varMonth + "/" + varDate + "/" + varYear;
+  } else if (t == "dmy") {
+    varNow = varDate + "/" + varMonth + "/" + varYear;
+  } else if (t == "y") {
+    varNow = varYear;
+  } else if (t == "m") {
+    varNow = varMonth;
+  } else if (t == "d") {
+    varNow = varDate;
+  }
+  return varNow;
+}
+
+function get_time(t) {
+  var varTime = new Date(),
+    varHours = varTime.getHours(),
+    varMinutes = varTime.getMinutes(),
+    varSeconds = varTime.getSeconds();
+  var varNow;
+  if (t == "hms") {
+    varNow = varHours + ":" + varMinutes + ":" + varSeconds;
+  } else if (t == "h") {
+    varNow = varHours;
+  } else if (t == "m") {
+    varNow = varMinutes;
+  } else if (t == "s") {
+    varNow = varSeconds;
+  }
+  return varNow;
+}
+
 
 
 boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true}, function (board) {
   board.samplingInterval = 50;
   rfid = getRFID(board);
+  myData= {};
+  myData.sheetUrl = 'https://docs.google.com/spreadsheets/d/1mjbZ4kRflma2u1jr8UwOI-L8pqvHv3y7e4J8cY4yfgo/edit?usp=sharing';
+  myData.sheetName = 'data';
+  
+  
   rfid.read();
   rfid.on('enter', function(_uid){
     rfid._uid = _uid;
      document.getElementById('result').innerHTML = "";
     document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
     document.getElementById('result').innerHTML = "儲存成功";
+    myData.column0 = get_date("ymd");
+    myData.column1 = get_time("hms");
+    myData.column2 = rfid._uid;
+    writeSheetData(myData);
+    
   });
 });
   
