@@ -120,16 +120,13 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
     myData.column2 = rfid._uid;
   
     writeSheetData(myData);
-    document.getElementById('hint').innerHTML = "";
-    document.getElementById('result').innerHTML = "輸入成功";
-    
+    document.getElementById('hint').innerHTML = "輸入成功";
     xyz=rfid._uid;
     }
   });
    rfid.on('leave',async function(_uid){
       document.getElementById('hint').innerHTML = "請放上學生證";
       document.getElementById('demo-area-01-show').innerHTML = "";
-      document.getElementById('result').innerHTML = "";
      
   });
 });
