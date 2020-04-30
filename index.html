@@ -115,6 +115,8 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
     document.getElementById('result').innerHTML = "輸入成功";
   });
    rfid.on('leave',async function(_uid){
+      document.getElementById('demo-area-01-show').innerHTML = "";
+      document.getElementById('result').innerHTML = "";
   });
 });
 });
