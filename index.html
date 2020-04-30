@@ -109,6 +109,7 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
   rfid.read();
   rfid.on('enter', function(_uid){
    if(_uid==xyz){
+      document.getElementById('hint').innerHTML = "資料已登記";
      }else{
     rfid._uid = _uid;
    
