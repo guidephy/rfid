@@ -111,6 +111,7 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
    if(_uid==xyz){
       document.getElementById('hint').innerHTML = "資料已登記";
       document.getElementById('demo-area-01-show').innerHTML = rfid._uid;
+      document.getElementById('result').innerHTML = "登記時間為:"+get_date("ymd")+get_time("hms");
      }else{
     rfid._uid = _uid;
    
@@ -123,12 +124,14 @@ boardReady({board: 'Smart', device: '10yNEBvd', transport: 'mqtt', multi: true},
   
     writeSheetData(myData);
     document.getElementById('hint').innerHTML = "輸入成功";
+    document.getElementById('result').innerHTML = "登記時間:"+get_date("ymd")+get_time("hms");   
     xyz=rfid._uid;
     }
   });
    rfid.on('leave',async function(_uid){
       document.getElementById('hint').innerHTML = "請放上學生證";
       document.getElementById('demo-area-01-show').innerHTML = "";
+      document.getElementById('result').innerHTML = "";
      
   });
 });
